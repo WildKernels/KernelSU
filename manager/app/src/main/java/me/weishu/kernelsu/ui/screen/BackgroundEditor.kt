@@ -41,6 +41,7 @@ import me.weishu.kernelsu.R
 import me.weishu.kernelsu.ksuApp
 import me.weishu.kernelsu.ui.util.BackgroundUtil
 import top.yukonga.miuix.kmp.basic.Card
+import top.yukonga.miuix.kmp.basic.FloatingActionButton
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton
 import top.yukonga.miuix.kmp.basic.Scaffold
@@ -127,12 +128,12 @@ fun BackgroundEditorScreen(navigator: DestinationsNavigator) {
                 }
             }
 
-            IconButton(
+            FloatingActionButton(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(16.dp),
                 onClick = {
-                    val uri = imageUri ?: return@IconButton
+                    val uri = imageUri ?: return@FloatingActionButton
                     scope.launch {
                         val success = withContext(Dispatchers.IO) {
                             val src = ksuApp.contentResolver.openInputStream(uri)?.use { input ->
