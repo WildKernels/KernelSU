@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - wild
     paths:
       - '.github/workflows/clippy.yml'
       - 'userspace/ksud/**'
