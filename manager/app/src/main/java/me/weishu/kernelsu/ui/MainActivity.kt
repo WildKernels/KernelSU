@@ -213,22 +213,32 @@ fun MainScreen(navController: DestinationsNavigator) {
         LocalPagerState provides pagerState,
         LocalHandlePageChange provides handlePageChange
     ) {
-        Scaffold(
-            bottomBar = {
-                BottomBar(hazeState, hazeStyle)
-            },
-        ) { innerPadding ->
-            HorizontalPager(
-                modifier = Modifier.hazeSource(state = hazeState),
-                state = pagerState,
-                beyondViewportPageCount = 2,
-                userScrollEnabled = false
-            ) {
-                when (it) {
-                    0 -> HomePager(pagerState, navController, innerPadding.calculateBottomPadding())
-                    1 -> SuperUserPager(navController, innerPadding.calculateBottomPadding())
-                    2 -> ModulePager(navController, innerPadding.calculateBottomPadding())
-                    3 -> SettingPager(navController, innerPadding.calculateBottomPadding())
+        androidx.compose.foundation.layout.Box {
+            if (me.weishu.kernelsu.ui.util.BackgroundUtil.hasBackground()) {
+                coil.compose.AsyncImage(
+                    model = me.weishu.kernelsu.ui.util.BackgroundUtil.uriForCoil(),
+                    contentDescription = null,
+                    modifier = Modifier.matchParentSize(),
+                    contentScale = androidx.compose.ui.layout.ContentScale.Crop
+                )
+            }
+            Scaffold(
+                bottomBar = {
+                    BottomBar(hazeState, hazeStyle)
+                },
+            ) { innerPadding ->
+                HorizontalPager(
+                    modifier = Modifier.hazeSource(state = hazeState),
+                    state = pagerState,
+                    beyondViewportPageCount = 2,
+                    userScrollEnabled = false
+                ) {
+                    when (it) {
+                        0 -> HomePager(pagerState, navController, innerPadding.calculateBottomPadding())
+                        1 -> SuperUserPager(navController, innerPadding.calculateBottomPadding())
+                        2 -> ModulePager(navController, innerPadding.calculateBottomPadding())
+                        3 -> SettingPager(navController, innerPadding.calculateBottomPadding())
+                    }
                 }
             }
         }

@@ -50,6 +50,7 @@ import androidx.core.content.edit
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.generated.destinations.AboutScreenDestination
+import com.ramcosta.composedestinations.generated.destinations.BackgroundEditorScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.AppProfileTemplateScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dev.chrisbanes.haze.HazeState
@@ -292,6 +293,24 @@ fun SettingPager(
                             },
                             onClick = {
                                 navigator.navigate(AppProfileTemplateScreenDestination) {
+                                    launchSingleTop = true
+                                }
+                            }
+                        )
+                        val backgroundTitle = stringResource(id = R.string.background)
+                        SuperArrow(
+                            title = backgroundTitle,
+                            summary = stringResource(id = R.string.background_summary),
+                            leftAction = {
+                                Icon(
+                                    Icons.Rounded.Palette,
+                                    modifier = Modifier.padding(end = 16.dp),
+                                    contentDescription = backgroundTitle,
+                                    tint = colorScheme.onBackground
+                                )
+                            },
+                            onClick = {
+                                navigator.navigate(BackgroundEditorScreenDestination) {
                                     launchSingleTop = true
                                 }
                             }
